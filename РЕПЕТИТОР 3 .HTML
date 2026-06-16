@@ -305,15 +305,113 @@
         body.dark-theme .border-gray-100 {
             border-color: #313a4e !important;
         }
-        body.dark-theme .hover\:bg-\[\#121316\]:hover {
-            background-color: #1f2937 !important;
-        }
         body.dark-theme .lightScroll::-webkit-scrollbar-track {
             background: #111827;
         }
         body.dark-theme .lightScroll::-webkit-scrollbar-thumb {
             background: #334155;
             border-color: #111827;
+        }
+
+        /* Брендовая кнопка #832A49 */
+        .btn-brand {
+            background-color: #832A49;
+            color: #fff;
+            transition: background-color 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
+        }
+        .btn-brand:hover {
+            background-color: #6B2239;
+        }
+        .btn-brand:active {
+            transform: scale(0.98);
+        }
+        .btn-brand:disabled,
+        .btn-brand.is-disabled {
+            background-color: #D8CCCC !important;
+            color: #9A8888 !important;
+            opacity: 0.65;
+            pointer-events: none;
+            box-shadow: none !important;
+        }
+
+        /* Нижний CTA-блок: на 2 тона темнее #C5B7B7 */
+        .cta-panel {
+            background: linear-gradient(135deg, #A59797 0%, #958787 55%, #8A7C7C 100%);
+            border: 1px solid rgba(131, 42, 73, 0.22);
+            box-shadow: 0 16px 40px rgba(131, 42, 73, 0.12);
+        }
+        .cta-panel h2 {
+            color: #2D1F24;
+        }
+        .cta-typewriter {
+            min-height: 5.5rem;
+            font-size: 1.125rem;
+            line-height: 1.65;
+            font-weight: 600;
+            color: #3D2A32;
+            text-align: left;
+        }
+        @media (min-width: 640px) {
+            .cta-typewriter { font-size: 1.35rem; min-height: 4.5rem; }
+        }
+        @media (min-width: 1024px) {
+            .cta-typewriter { font-size: 1.55rem; }
+        }
+        .cta-24-highlight {
+            font-family: 'Unbounded', sans-serif;
+            font-size: 1.55em;
+            font-weight: 800;
+            color: #832A49;
+            letter-spacing: -0.02em;
+        }
+        .typewriter-cursor {
+            display: inline-block;
+            width: 2px;
+            margin-left: 2px;
+            color: #832A49;
+            animation: blinkCursor 0.9s step-end infinite;
+        }
+        @keyframes blinkCursor {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Тёмная тема: контраст вместо «потерянных» чёрных элементов */
+        body.dark-theme .btn-brand {
+            background-color: #C45A7A;
+            color: #fff;
+            box-shadow: 0 4px 14px rgba(196, 90, 122, 0.35);
+        }
+        body.dark-theme .btn-brand:hover {
+            background-color: #832A49;
+        }
+        body.dark-theme .btn-brand:disabled,
+        body.dark-theme .btn-brand.is-disabled {
+            background-color: #3A3040 !important;
+            color: #9CA3AF !important;
+        }
+        body.dark-theme .border-\[\#121316\] {
+            border-color: #C5B7B7 !important;
+        }
+        body.dark-theme .bg-\[\#121316\] {
+            background-color: #832A49 !important;
+        }
+        body.dark-theme .hover\:bg-\[\#121316\]:hover {
+            background-color: #C45A7A !important;
+            color: #fff !important;
+        }
+        body.dark-theme .cta-panel {
+            background: linear-gradient(135deg, #4A3F42 0%, #3A3235 55%, #2E282A 100%);
+            border-color: rgba(196, 90, 122, 0.35);
+        }
+        body.dark-theme .cta-panel h2 {
+            color: #F5E8EC;
+        }
+        body.dark-theme .cta-typewriter {
+            color: #E8D8DC;
+        }
+        body.dark-theme .cta-24-highlight {
+            color: #F0A8BC;
         }
     </style>
 </head>
@@ -464,7 +562,7 @@
                         Введите вопрос из домашнего задания и получите мгновенную помощь. Как и хороший репетитор, <span class="text-[#BE123C] font-bold">Khanmigo</span> мягко направляет ребенка, чтобы тот сам находил ответы.
                     </p>
                     <div class="pt-2">
-                        <button onclick="openModal('auth-modal')" class="bg-[#121316] hover:bg-[#0052FF] text-white font-bold text-xs px-8 py-4 rounded-xl transition-all duration-200 shadow-md active:scale-97 tracking-wide cursor-pointer">
+                        <button onclick="openModal('auth-modal')" class="btn-brand font-bold text-xs px-8 py-4 rounded-xl shadow-md tracking-wide cursor-pointer">
                             РЕГИСТРИРУЙТЕСЬ БЕСПЛАТНО
                         </button>
                     </div>
@@ -511,7 +609,7 @@
                         Платформа <span class="text-[#0052FF] font-bold">побуждает вас мыслить критически</span> и успешно решать комплексные задачи, фундаментально не предоставляя готовых прямых ответов для банального списывания. Изучайте новые дисциплины в любое удобное время, будь то сложная алгебра, подготовка к ОГЭ/ЕГЭ, формулы по химии, обществознание или написание эссе.
                     </p>
                     <div class="pt-2">
-                        <button onclick="openModal('auth-modal')" class="bg-[#121316] hover:bg-[#BE123C] text-white font-bold text-xs px-8 py-4 rounded-xl transition-all duration-200 shadow-md active:scale-97 tracking-wide cursor-pointer">
+                        <button onclick="openModal('auth-modal')" class="btn-brand font-bold text-xs px-8 py-4 rounded-xl shadow-md tracking-wide cursor-pointer">
                             РЕГИСТРИРУЙТЕСЬ БЕСПЛАТНО
                         </button>
                     </div>
@@ -686,7 +784,7 @@
                             </div>
                         </div>
                     </div>
-                    <button onclick="checkoutSingleSubject()" class="w-full mt-6 bg-[#121316] hover:bg-[#0052FF] text-white font-bold text-xs py-3.5 rounded-xl transition-all cursor-pointer active:scale-98 shadow-sm">ЗАРЕГИСТРИРУЙТЕСЬ БЕСПЛАТНО</button>
+                    <button onclick="checkoutSingleSubject()" class="btn-brand w-full mt-6 font-bold text-xs py-3.5 rounded-xl cursor-pointer shadow-sm">ЗАРЕГИСТРИРУЙТЕСЬ БЕСПЛАТНО</button>
                 </div>
 
                 <div class="bg-white border-2 border-[#0052FF] rounded-3xl p-6 flex flex-col justify-between relative shadow-xl shadow-blue-500/10 hover:shadow-blue-500/20 transition-all duration-300">
@@ -739,7 +837,7 @@
                             </div>
                         </div>
                     </div>
-                    <button id="btn-boost-buy" disabled onclick="checkoutBoostSubjects()" class="w-full mt-6 bg-gray-200 opacity-50 pointer-events-none text-gray-400 font-bold text-xs py-3.5 rounded-xl transition-all duration-350">ЗАРЕГИСТРИРУЙТЕСЬ БЕСПЛАТНО</button>
+                    <button id="btn-boost-buy" disabled onclick="checkoutBoostSubjects()" class="btn-brand is-disabled w-full mt-6 font-bold text-xs py-3.5 rounded-xl">ЗАРЕГИСТРИРУЙТЕСЬ БЕСПЛАТНО</button>
                 </div>
 
                 <div class="bg-white border-2 border-gray-300 rounded-3xl p-6 flex flex-col justify-between hover:border-gray-400 transition-all duration-300 shadow-xs hover:shadow-md">
@@ -767,22 +865,20 @@
                             </div>
                         </div>
                     </div>
-                    <button onclick="checkoutAllInclusive()" class="w-full mt-6 bg-[#121316] hover:bg-[#BE123C] text-white font-bold text-xs py-3.5 rounded-xl transition-all cursor-pointer active:scale-98 shadow-sm">ЗАРЕГИСТРИРУЙТЕСЬ БЕСПЛАТНО</button>
+                    <button onclick="checkoutAllInclusive()" class="btn-brand w-full mt-6 font-bold text-xs py-3.5 rounded-xl cursor-pointer shadow-sm">ЗАРЕГИСТРИРУЙТЕСЬ БЕСПЛАТНО</button>
                 </div>
             </div>
         </section>
 
         <section class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
-            <div class="bg-[#121316] border border-gray-800 rounded-3xl p-10 sm:p-14 relative overflow-hidden shadow-xl shadow-gray-900/10">
-                <div class="relative z-10 max-w-2xl mx-auto space-y-5">
-                    <h2 class="font-title section-title text-xl sm:text-3xl font-black text-white">
+            <div class="cta-panel rounded-3xl p-10 sm:p-14 relative overflow-hidden">
+                <div class="relative z-10 max-w-3xl mx-auto space-y-6">
+                    <h2 class="font-title section-title text-xl sm:text-3xl font-black">
                         Попробуйте лучший образовательный инструмент на базе нейросетей
                     </h2>
-                    <p class="text-xs text-gray-400 font-medium">
-                        Первые 24 часа бесплатного доступа. Настройте родительский кабинет, оцените скорость Vision API и посмотрите историю задач вашего ребенка.
-                    </p>
+                    <p id="cta-typewriter" class="cta-typewriter mx-auto max-w-2xl text-left sm:text-center"></p>
                     <div class="pt-2">
-                        <button onclick="scrollToSection('hero')" class="bg-[#0052FF] hover:bg-[#0047D0] text-white font-bold text-xs px-8 py-4 rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl shadow-blue-600/20 active:scale-95 cursor-pointer">
+                        <button onclick="scrollToSection('hero')" class="btn-brand font-bold text-sm sm:text-xs px-10 py-4 rounded-xl shadow-lg cursor-pointer">
                             ПОПРОБУЙ БЕСПЛАТНО
                         </button>
                     </div>
@@ -873,6 +969,7 @@
         lucide.createIcons();
         initTheme();
         initPageMotion();
+        initTypewriter();
 
         function initTheme() {
             const savedTheme = localStorage.getItem('theme');
@@ -944,11 +1041,11 @@
             if (count === 3) {
                 counterLabel.className = "font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200 shadow-xs";
                 buyButton.removeAttribute('disabled');
-                buyButton.className = "w-full mt-6 bg-[#0052FF] hover:bg-[#0042D0] text-white font-bold text-xs py-3.5 rounded-xl transition shadow-lg shadow-blue-500/20 cursor-pointer opacity-100 pointer-events-auto active:scale-98";
+                buyButton.className = "btn-brand w-full mt-6 font-bold text-xs py-3.5 rounded-xl shadow-lg cursor-pointer";
             } else {
                 counterLabel.className = "font-bold text-[#BE123C] bg-rose-50 px-2 py-0.5 rounded border border-rose-100";
                 buyButton.setAttribute('disabled', 'true');
-                buyButton.className = "w-full mt-6 bg-gray-200 opacity-50 pointer-events-none text-gray-400 font-bold text-xs py-3.5 rounded-xl transition";
+                buyButton.className = "btn-brand is-disabled w-full mt-6 font-bold text-xs py-3.5 rounded-xl";
             }
         }
 
@@ -1085,6 +1182,51 @@
             const gap = 20;
             const step = card ? card.getBoundingClientRect().width + gap : 360;
             track.scrollBy({ left: direction * step, behavior: 'smooth' });
+        }
+
+        function initTypewriter() {
+            const el = document.getElementById('cta-typewriter');
+            if (!el) return;
+
+            const before = 'Первые ';
+            const highlight = '24 часа';
+            const after = ' бесплатного доступа. Настройте родительский кабинет, оцените скорость Vision API и посмотрите историю задач вашего ребенка.';
+            const full = before + highlight + after;
+            let index = 0;
+            let started = false;
+
+            const observer = new IntersectionObserver((entries) => {
+                if (entries[0].isIntersecting && !started) {
+                    started = true;
+                    observer.disconnect();
+                    typeNext();
+                }
+            }, { threshold: 0.35 });
+
+            observer.observe(el);
+
+            function render() {
+                const cursor = index < full.length ? '<span class="typewriter-cursor">|</span>' : '';
+                if (index <= before.length) {
+                    el.innerHTML = full.slice(0, index) + cursor;
+                } else if (index <= before.length + highlight.length) {
+                    const hlPart = highlight.slice(0, index - before.length);
+                    el.innerHTML = before + '<span class="cta-24-highlight">' + hlPart + '</span>' + cursor;
+                } else {
+                    const afterPart = after.slice(0, index - before.length - highlight.length);
+                    el.innerHTML = before + '<span class="cta-24-highlight">' + highlight + '</span>' + afterPart + cursor;
+                }
+            }
+
+            function typeNext() {
+                if (index < full.length) {
+                    index += 1;
+                    render();
+                    setTimeout(typeNext, 38);
+                } else {
+                    el.innerHTML = before + '<span class="cta-24-highlight">' + highlight + '</span>' + after;
+                }
+            }
         }
     </script>
 </body>
