@@ -12,12 +12,14 @@
     <style>
         body {
             font-family: 'Onest', sans-serif;
-            background-color: #FAF9F5;
+            background: linear-gradient(135deg, #C5B7B7 0%, #DDD4D4 42%, #F0EBEB 78%, #FAF7F7 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
             color: #121316;
             overflow-x: hidden;
             line-height: 1.65;
             -webkit-font-smoothing: antialiased;
-            transition: background-color 0.25s ease, color 0.25s ease;
+            transition: background 0.25s ease, color 0.25s ease;
         }
         .font-title {
             font-family: 'Unbounded', sans-serif;
@@ -62,23 +64,6 @@
         .delay-2 { animation-delay: 0.24s; opacity: 0; }
         .delay-3 { animation-delay: 0.36s; opacity: 0; }
 
-        /* ИНТЕНСИВНОЕ ПОКАЧИВАНИЕ И ПОЛЕТ ДЕКОРАТИВНЫХ ФОРМУЛ И КНИГ */
-        @keyframes deepFloat {
-            0% { transform: translateY(0px) translateX(0px) rotate(0deg); opacity: 0.25; }
-            33% { transform: translateY(-18px) translateX(10px) rotate(4deg); opacity: 0.55; }
-            66% { transform: translateY(10px) translateX(-8px) rotate(-3deg); opacity: 0.4; }
-            100% { transform: translateY(0px) translateX(0px) rotate(0deg); opacity: 0.25; }
-        }
-        .floating-math {
-            animation: deepFloat 9s ease-in-out infinite;
-        }
-        .floating-math:nth-child(2) { animation-delay: 1.5s; animation-duration: 11s; }
-        .floating-math:nth-child(3) { animation-delay: 3s; animation-duration: 8s; }
-        .floating-math:nth-child(4) { animation-delay: 4.5s; animation-duration: 13s; }
-        .floating-math:nth-child(5) { animation-delay: 2.5s; animation-duration: 10s; }
-        .floating-math:nth-child(6) { animation-delay: 5.5s; animation-duration: 12s; }
-        .floating-math:nth-child(7) { animation-delay: 0.5s; animation-duration: 7s; }
-        
         /* ЭФФЕКТ СВЕРХЧЁТКОГО ЛАЗЕРНОГО ИИ-СКАНЕРА */
         @keyframes laserScan {
             0% { top: 0%; opacity: 0; }
@@ -98,9 +83,9 @@
 
         /* Кастомный видимый скроллбар */
         .lightScroll::-webkit-scrollbar { width: 10px; }
-        .lightScroll::-webkit-scrollbar-track { background: #FAF9F5; }
-        .lightScroll::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 6px; border: 2px solid #FAF9F5; }
-        .lightScroll::-webkit-scrollbar-thumb:hover { background: #94A3B8; }
+        .lightScroll::-webkit-scrollbar-track { background: #E8E0E0; }
+        .lightScroll::-webkit-scrollbar-thumb { background: #B8A8A8; border-radius: 6px; border: 2px solid #E8E0E0; }
+        .lightScroll::-webkit-scrollbar-thumb:hover { background: #9A8A8A; }
 
         /* Мягкий градиентный фон hero-секции */
         #hero::before {
@@ -108,7 +93,7 @@
             position: absolute;
             inset: -20% 0 auto 0;
             height: 70%;
-            background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0, 82, 255, 0.06) 0%, transparent 70%);
+            background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(255, 255, 255, 0.35) 0%, transparent 70%);
             pointer-events: none;
             z-index: -1;
         }
@@ -286,11 +271,12 @@
 
         /* Тёмная тема (переопределения базовых tailwind-утилит) */
         body.dark-theme {
-            background-color: #0f1117 !important;
+            background: linear-gradient(135deg, #1c1818 0%, #12151c 55%, #0f1117 100%) !important;
+            background-attachment: fixed !important;
             color: #e5e7eb !important;
         }
         body.dark-theme header {
-            background: rgba(15, 17, 23, 0.88) !important;
+            background: rgba(18, 21, 28, 0.9) !important;
             border-color: #2b3140 !important;
         }
         body.dark-theme footer {
@@ -329,44 +315,11 @@
             background: #334155;
             border-color: #111827;
         }
-        body::after {
-            content: "";
-            position: fixed;
-            width: 58vw;
-            height: 58vw;
-            max-width: 720px;
-            max-height: 720px;
-            top: -20vw;
-            right: -16vw;
-            border-radius: 9999px;
-            background: radial-gradient(circle, rgba(0, 82, 255, 0.14) 0%, rgba(190, 18, 60, 0.06) 40%, rgba(250, 249, 245, 0) 72%);
-            filter: blur(14px);
-            z-index: -1;
-            pointer-events: none;
-            animation: deepFloat 14s ease-in-out infinite;
-        }
-        body.dark-theme::after {
-            background: radial-gradient(circle, rgba(56, 189, 248, 0.2) 0%, rgba(129, 140, 248, 0.08) 40%, rgba(15, 17, 23, 0) 72%);
-        }
     </style>
 </head>
-<body class="bg-[#FAF9F5] text-[#121316] min-h-screen antialiased selection:bg-[#0052FF] selection:text-white">
+<body class="text-[#121316] min-h-screen antialiased selection:bg-[#0052FF] selection:text-white">
 
-    <div class="absolute inset-0 pointer-events-none overflow-hidden z-0 opacity-80">
-        <div class="floating-math absolute top-20 left-[6%] text-[#0052FF] font-mono text-xl font-bold">x = (-b ± √D) / 2a</div>
-        <div class="floating-math absolute top-40 right-[8%] text-[#BE123C] font-mono text-2xl font-bold">2H₂ + O₂ → 2H₂O</div>
-        <div class="floating-math absolute top-[28%] left-[4%] text-emerald-600 text-3xl font-black border-3 border-emerald-500/40 px-3 py-1 rounded-2xl rotate-[-12deg] bg-white shadow-sm">5+</div>
-        <div class="floating-math absolute top-[55%] right-[5%] text-amber-600 text-5xl filter drop-shadow-md">📓</div>
-        <div class="floating-math absolute top-[72%] left-[8%] text-indigo-600 font-mono text-lg font-bold">sin²α + cos²α = 1</div>
-        <div class="floating-math absolute top-[15%] left-[45%] text-[#0052FF]/30 text-6xl filter drop-shadow-sm">📐</div>
-        <div class="floating-math absolute top-[35%] right-[42%] text-purple-600 font-mono text-lg font-bold">C₆H₁₂O₆ + 6O₂ → 6CO₂ + 6H₂O</div>
-        <div class="floating-math absolute top-[65%] left-[3%] text-rose-600 font-mono text-xl font-bold">F = m · a</div>
-        <div class="floating-math absolute top-[85%] right-[15%] text-cyan-600 text-5xl filter drop-shadow-md">📚</div>
-        <div class="floating-math absolute top-[48%] left-[15%] text-slate-400 text-4xl">📝</div>
-        <div class="floating-math absolute top-[78%] right-[45%] text-amber-700 font-mono text-lg font-bold">Fe + CuSO₄ → FeSO₄ + Cu</div>
-    </div>
-
-    <header class="border-b border-gray-300 backdrop-blur-md sticky top-0 z-50 bg-[#FAF9F5]/90 shadow-xs">
+    <header class="border-b border-[#B8A8A8]/50 backdrop-blur-md sticky top-0 z-50 bg-[#C5B7B7]/85 shadow-xs">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
             <div class="flex items-center space-x-3 cursor-pointer" onclick="scrollToSection('hero')">
                 <div class="bg-[#0052FF] p-2 rounded-xl text-white shadow-md shadow-blue-500/30 transition hover:scale-105">
