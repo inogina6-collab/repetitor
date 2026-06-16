@@ -17,6 +17,7 @@
             overflow-x: hidden;
             line-height: 1.65;
             -webkit-font-smoothing: antialiased;
+            transition: background-color 0.25s ease, color 0.25s ease;
         }
         .font-title {
             font-family: 'Unbounded', sans-serif;
@@ -108,6 +109,57 @@
             pointer-events: none;
             z-index: -1;
         }
+
+        /* Переключатель темы */
+        .theme-toggle {
+            min-width: 104px;
+        }
+
+        /* Тёмная тема (переопределения базовых tailwind-утилит) */
+        body.dark-theme {
+            background-color: #0f1117 !important;
+            color: #e5e7eb !important;
+        }
+        body.dark-theme header {
+            background: rgba(15, 17, 23, 0.88) !important;
+            border-color: #2b3140 !important;
+        }
+        body.dark-theme footer {
+            background: #111827 !important;
+            border-color: #2b3140 !important;
+            color: #9ca3af !important;
+        }
+        body.dark-theme .bg-white {
+            background-color: #171b25 !important;
+        }
+        body.dark-theme .bg-gray-50,
+        body.dark-theme .bg-gray-50\/50,
+        body.dark-theme .bg-gray-100 {
+            background-color: #1d2330 !important;
+        }
+        body.dark-theme .text-\[\#121316\],
+        body.dark-theme .text-gray-800,
+        body.dark-theme .text-gray-700,
+        body.dark-theme .text-gray-600,
+        body.dark-theme .text-gray-500,
+        body.dark-theme .text-gray-400 {
+            color: #d1d5db !important;
+        }
+        body.dark-theme .border-gray-300,
+        body.dark-theme .border-gray-200,
+        body.dark-theme .border-gray-100 {
+            border-color: #313a4e !important;
+        }
+        body.dark-theme .hover\:bg-\[\#121316\]:hover {
+            background-color: #1f2937 !important;
+        }
+        body.dark-theme .lightScroll::-webkit-scrollbar-track {
+            background: #111827;
+        }
+        body.dark-theme .lightScroll::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-color: #111827;
+        }
     </style>
 </head>
 <body class="bg-[#FAF9F5] text-[#121316] min-h-screen antialiased selection:bg-[#0052FF] selection:text-white">
@@ -141,6 +193,10 @@
                 <a href="#pricing" class="hover:text-[#BE123C] transition-colors">Тарифы</a>
             </nav>
             <div class="flex items-center space-x-4">
+                <button id="theme-toggle" onclick="toggleTheme()" class="theme-toggle text-xs font-bold text-gray-800 transition flex items-center justify-center space-x-2 border-2 border-[#121316] px-3 py-2 rounded-xl bg-white hover:bg-gray-100 shadow-sm active:scale-97">
+                    <span id="theme-icon" aria-hidden="true">🌙</span>
+                    <span id="theme-label">Тёмная</span>
+                </button>
                 <button onclick="openModal('lk-modal')" class="text-xs font-bold text-gray-800 hover:text-white transition flex items-center space-x-2 border-2 border-[#121316] px-4 py-2 rounded-xl bg-white hover:bg-[#121316] shadow-sm active:scale-97">
                     <i data-lucide="user" class="w-4 h-4"></i>
                     <span>Личный кабинет</span>
@@ -611,6 +667,37 @@
 
     <script>
         lucide.createIcons();
+        initTheme();
+
+        function initTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                setTheme('dark');
+                return;
+            }
+            setTheme('light');
+        }
+
+        function setTheme(theme) {
+            const body = document.body;
+            const icon = document.getElementById('theme-icon');
+            const label = document.getElementById('theme-label');
+            const html = document.documentElement;
+            const isDark = theme === 'dark';
+
+            body.classList.toggle('dark-theme', isDark);
+            html.classList.toggle('lightScroll', !isDark);
+            html.classList.toggle('darkScroll', isDark);
+
+            icon.textContent = isDark ? '☀️' : '🌙';
+            label.textContent = isDark ? 'Светлая' : 'Тёмная';
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        }
+
+        function toggleTheme() {
+            const isDarkNow = document.body.classList.contains('dark-theme');
+            setTheme(isDarkNow ? 'light' : 'dark');
+        }
 
         function scrollToSection(id) {
             const el = document.getElementById(id);
@@ -761,4 +848,5 @@
         }
     </script>
 </body>
+</html>
 </html>
