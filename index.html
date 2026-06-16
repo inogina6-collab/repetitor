@@ -1113,6 +1113,16 @@
             }, { threshold: 0.16, rootMargin: '0px 0px -8% 0px' });
 
             targets.forEach((el) => observer.observe(el));
+
+            // Сразу показываем блоки, уже видимые при загрузке (важно для file:// и кэша)
+            requestAnimationFrame(() => {
+                targets.forEach((el) => {
+                    const rect = el.getBoundingClientRect();
+                    if (rect.top < window.innerHeight * 0.92 && rect.bottom > 0) {
+                        el.classList.add('is-visible');
+                    }
+                });
+            });
         }
 
         function scrollReviews(direction) {
