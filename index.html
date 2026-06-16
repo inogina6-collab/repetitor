@@ -35,6 +35,9 @@
         .hero-title .line + .line {
             margin-top: 0.35em;
         }
+        .hero-title .nowrap {
+            white-space: nowrap;
+        }
         .section-title {
             line-height: 1.4;
             letter-spacing: -0.02em;
@@ -114,6 +117,172 @@
         .theme-toggle {
             min-width: 104px;
         }
+        .section-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+            will-change: transform, opacity;
+        }
+        .section-reveal.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .elevated-card {
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
+            transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+        }
+        .elevated-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 48px rgba(0, 82, 255, 0.2);
+            border-color: rgba(0, 82, 255, 0.25);
+        }
+        .elevated-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(120deg, transparent 0%, rgba(255, 255, 255, 0.38) 48%, transparent 100%);
+            transform: translateX(-140%);
+            transition: transform 0.8s ease;
+            pointer-events: none;
+        }
+        .elevated-card:hover::before {
+            transform: translateX(130%);
+        }
+        .review-card {
+            position: relative;
+            flex: 0 0 min(340px, 86vw);
+            scroll-snap-align: start;
+            padding-bottom: 1.5rem;
+            min-height: 260px;
+            background: linear-gradient(145deg, #ffffff 0%, #f8fafc 55%, #f1f5f9 100%);
+            border: 1px solid rgba(148, 163, 184, 0.35);
+            transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+            overflow: hidden;
+        }
+        .review-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(0, 82, 255, 0.06) 0%, rgba(190, 18, 60, 0.04) 50%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.35s ease;
+            pointer-events: none;
+        }
+        .review-card:hover {
+            transform: translateY(-6px) scale(1.01);
+            border-color: rgba(0, 82, 255, 0.28);
+            box-shadow: 0 18px 40px rgba(0, 82, 255, 0.14);
+        }
+        .review-card:hover::before {
+            opacity: 1;
+        }
+        .review-card .review-stars {
+            color: #f59e0b;
+            letter-spacing: 0.08em;
+            font-size: 0.65rem;
+        }
+        .review-card .review-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            margin-top: 0.5rem;
+            padding: 0.2rem 0.55rem;
+            border-radius: 9999px;
+            font-size: 0.6rem;
+            font-weight: 800;
+            color: #047857;
+            background: rgba(16, 185, 129, 0.12);
+            border: 1px solid rgba(16, 185, 129, 0.25);
+        }
+        .review-card .review-avatar {
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            width: 3.25rem;
+            height: 3.25rem;
+            border-radius: 9999px;
+            object-fit: cover;
+            border: 3px solid #fff;
+            box-shadow: 0 6px 18px rgba(15, 23, 42, 0.18), 0 0 0 2px rgba(0, 82, 255, 0.12);
+            transition: transform 0.35s ease, box-shadow 0.35s ease;
+        }
+        .review-card:hover .review-avatar {
+            transform: scale(1.08);
+            box-shadow: 0 8px 22px rgba(0, 82, 255, 0.22), 0 0 0 2px rgba(190, 18, 60, 0.18);
+        }
+        .reviews-scroll-wrap {
+            position: relative;
+        }
+        .reviews-track {
+            display: flex;
+            gap: 1.25rem;
+            overflow-x: auto;
+            overflow-y: hidden;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            padding: 0.25rem 0.25rem 1.25rem;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: thin;
+            scrollbar-color: #94a3b8 transparent;
+        }
+        .reviews-track::-webkit-scrollbar {
+            height: 8px;
+        }
+        .reviews-track::-webkit-scrollbar-track {
+            background: rgba(148, 163, 184, 0.12);
+            border-radius: 9999px;
+        }
+        .reviews-track::-webkit-scrollbar-thumb {
+            background: linear-gradient(90deg, #0052FF, #BE123C);
+            border-radius: 9999px;
+        }
+        .reviews-nav-btn {
+            position: absolute;
+            top: 42%;
+            transform: translateY(-50%);
+            z-index: 2;
+            width: 2.25rem;
+            height: 2.25rem;
+            border-radius: 9999px;
+            border: 2px solid #e2e8f0;
+            background: rgba(255, 255, 255, 0.95);
+            color: #121316;
+            box-shadow: 0 8px 20px rgba(15, 23, 42, 0.12);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+        }
+        .reviews-nav-btn:hover {
+            transform: translateY(-50%) scale(1.06);
+            border-color: #0052FF;
+            color: #0052FF;
+        }
+        .reviews-nav-btn.prev { left: -0.35rem; }
+        .reviews-nav-btn.next { right: -0.35rem; }
+        .reviews-hint {
+            margin-top: 0.35rem;
+            text-align: center;
+            font-size: 0.68rem;
+            font-weight: 700;
+            color: #94a3b8;
+            letter-spacing: 0.02em;
+        }
+        body.dark-theme .review-card {
+            background: linear-gradient(145deg, #171b25 0%, #1d2330 100%);
+            border-color: #313a4e;
+        }
+        body.dark-theme .review-card .review-avatar {
+            border-color: #1d2330;
+        }
+        body.dark-theme .reviews-nav-btn {
+            background: rgba(23, 27, 37, 0.95);
+            border-color: #313a4e;
+            color: #e5e7eb;
+        }
 
         /* Тёмная тема (переопределения базовых tailwind-утилит) */
         body.dark-theme {
@@ -159,6 +328,25 @@
         body.dark-theme .lightScroll::-webkit-scrollbar-thumb {
             background: #334155;
             border-color: #111827;
+        }
+        body::after {
+            content: "";
+            position: fixed;
+            width: 58vw;
+            height: 58vw;
+            max-width: 720px;
+            max-height: 720px;
+            top: -20vw;
+            right: -16vw;
+            border-radius: 9999px;
+            background: radial-gradient(circle, rgba(0, 82, 255, 0.14) 0%, rgba(190, 18, 60, 0.06) 40%, rgba(250, 249, 245, 0) 72%);
+            filter: blur(14px);
+            z-index: -1;
+            pointer-events: none;
+            animation: deepFloat 14s ease-in-out infinite;
+        }
+        body.dark-theme::after {
+            background: radial-gradient(circle, rgba(56, 189, 248, 0.2) 0%, rgba(129, 140, 248, 0.08) 40%, rgba(15, 17, 23, 0) 72%);
         }
     </style>
 </head>
@@ -214,7 +402,7 @@
             </div>
             
             <h1 class="animate-fade-up delay-1 hero-title text-3xl sm:text-5xl lg:text-[3.25rem] xl:text-6xl text-[#121316] max-w-5xl mx-auto">
-                <span class="line">Твой личный <span class="text-[#0052FF] underline decoration-[#BE123C] decoration-4 underline-offset-[6px]">ИИ-репетитор</span></span>
+                <span class="line">Твой личный <span class="nowrap text-[#0052FF] underline decoration-[#BE123C] decoration-4 underline-offset-[6px]">ИИ-репетитор</span></span>
                 <span class="line">на экране <span class="text-[#BE123C]">смартфона</span></span>
             </h1>
             
@@ -222,7 +410,7 @@
                 Мы не просто даем списать — <span class="text-[#0052FF] font-bold border-b-3 border-[#BE123C]">мы подробно объясняем</span> логику каждого действия!
             </p>
 
-            <div class="animate-fade-up delay-3 mt-12 max-w-3xl mx-auto bg-white border-2 border-gray-300 rounded-3xl p-6 shadow-xl shadow-gray-300/50 relative overflow-hidden">
+            <div class="animate-fade-up delay-3 mt-12 max-w-3xl mx-auto bg-white/95 border-2 border-gray-300 rounded-3xl p-6 shadow-xl shadow-gray-300/50 relative overflow-hidden elevated-card">
                 
                 <div id="laser-scanner" class="hidden scanner-line"></div>
 
@@ -379,48 +567,111 @@
         </section>
 
         <section id="reviews" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t-2 border-gray-200">
-            <div class="text-center max-w-3xl mx-auto mb-12">
+            <div class="text-center max-w-3xl mx-auto mb-10">
                 <h2 class="font-title section-title text-xl sm:text-3xl font-black text-[#121316]">Ученики и родители оценили Домашка.AI</h2>
-                <p class="text-sm font-bold text-gray-500 mt-2">Разбор в одном окне, реальное понимание сложных тем и колоссальная экономия бюджета</p>
+                <p class="text-sm font-bold text-gray-500 mt-2">Понятные объяснения за минуты, без поездок к репетитору — семьи экономят от 7 000 до 20 000 ₽ в месяц</p>
             </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="bg-white border-2 border-gray-200 p-6 rounded-2xl flex flex-col justify-between shadow-xs hover:shadow-md transition-all duration-300">
-                    <p class="text-gray-700 text-xs leading-relaxed font-medium italic">
-                        «Поразило, насколько всё удобно устроено в одном окне. Сделали снимок тетрадки по химии, ИИ распознал формулу реакции и выдал пошаговый разбор, объясняя абсолютно всё подробно и понятно. Репетиторы стоят гораздо дороже, это невероятная экономия времени и денег!»
-                    </p>
-                    <div class="mt-6 flex items-center space-x-3 pt-4 border-t border-gray-100">
-                        <div class="w-10 h-10 bg-blue-100 text-[#0052FF] rounded-full flex items-center justify-center font-bold text-xs border-2 border-blue-200">АН</div>
+
+            <div class="reviews-scroll-wrap">
+                <button type="button" class="reviews-nav-btn prev hidden sm:inline-flex" onclick="scrollReviews(-1)" aria-label="Предыдущий отзыв">
+                    <i data-lucide="chevron-left" class="w-4 h-4"></i>
+                </button>
+                <button type="button" class="reviews-nav-btn next hidden sm:inline-flex" onclick="scrollReviews(1)" aria-label="Следующий отзыв">
+                    <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                </button>
+
+                <div id="reviews-track" class="reviews-track">
+                    <article class="review-card p-6 rounded-2xl flex flex-col justify-between">
                         <div>
+                            <div class="review-stars mb-3">★★★★★</div>
+                            <p class="text-gray-700 text-xs leading-relaxed font-medium italic pr-2">
+                                «Всё в одном окне — сфотографировали тетрадь по химии, ИИ за 30 секунд дал пошаговый разбор простым языком. Репетитор обходился в 4 000 ₽/неделю, здесь подписка 590 ₽/мес. Экономия очевидна, а ребёнок наконец понимает, а не списывает.»
+                            </p>
+                        </div>
+                        <div class="mt-6 pr-16 pt-4 border-t border-gray-100">
                             <h5 class="text-xs font-bold text-[#121316]">Анна Н. (Мама школьника)</h5>
                             <span class="text-[10px] font-bold text-gray-400">Пакет «Точечный удар»</span>
+                            <span class="review-badge">−15 410 ₽/мес vs репетитор</span>
                         </div>
-                    </div>
-                </div>
-                <div class="bg-white border-2 border-gray-200 p-6 rounded-2xl flex flex-col justify-between shadow-xs hover:shadow-md transition-all duration-300">
-                    <p class="text-gray-700 text-xs leading-relaxed font-medium italic">
-                        «Готовлюсь к ЕГЭ по физике и информатике. Обычные решебники просто пишут ответ, списываешь и ничего не понимаешь, а у доски заваливают. Домашка.AI расписывает логику так, словно сидишь с крутым учителем один на один. Очень выручает!»
-                    </p>
-                    <div class="mt-6 flex items-center space-x-3 pt-4 border-t border-gray-100">
-                        <div class="w-10 h-10 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center font-bold text-xs border-2 border-purple-200">КЛ</div>
+                        <img src="assets/avatars/anna.svg" alt="Анна Н." class="review-avatar" loading="lazy">
+                    </article>
+
+                    <article class="review-card p-6 rounded-2xl flex flex-col justify-between">
                         <div>
+                            <div class="review-stars mb-3">★★★★★</div>
+                            <p class="text-gray-700 text-xs leading-relaxed font-medium italic pr-2">
+                                «Готовлюсь к ЕГЭ по физике и информатике. Решебники дают только ответ, а Домашка.AI расписывает логику как личный учитель. За 2 недели поднял средний балл с 62 до 74 — и это без дорогих занятий по 2 000 ₽ за час.»
+                            </p>
+                        </div>
+                        <div class="mt-6 pr-16 pt-4 border-t border-gray-100">
                             <h5 class="text-xs font-bold text-[#121316]">Кирилл Л. (11 класс)</h5>
                             <span class="text-[10px] font-bold text-gray-400">Готовится к профильным экзаменам</span>
+                            <span class="review-badge">−16 000 ₽/мес vs 2 репетитора</span>
                         </div>
-                    </div>
-                </div>
-                <div class="bg-white border-2 border-gray-200 p-6 rounded-2xl flex flex-col justify-between shadow-xs hover:shadow-md transition-all duration-300">
-                    <p class="text-gray-700 text-xs leading-relaxed font-medium italic">
-                        «Для многодетной семьи подписка "Всё включено" — это спасение. Младший разбирает математику и русский за 5 класс, старшая готовится к обществознанию. Объяснения адаптируются под возраст идеально. Больше никаких ночных споров над уроками!»
-                    </p>
-                    <div class="mt-6 flex items-center space-x-3 pt-4 border-t border-gray-100">
-                        <div class="w-10 h-10 bg-rose-100 text-[#BE123C] rounded-full flex items-center justify-center font-bold text-xs border-2 border-rose-200">ИВ</div>
+                        <img src="assets/avatars/kirill.svg" alt="Кирилл Л." class="review-avatar" loading="lazy">
+                    </article>
+
+                    <article class="review-card p-6 rounded-2xl flex flex-col justify-between">
                         <div>
-                            <h5 class="text-xs font-bold text-[#121316]">Ирина В. (Мама троих детей)</h5>
-                            <span class="text-[10px] font-bold text-gray-400">Сэкономила более 12 000 ₽ за месяц</span>
+                            <div class="review-stars mb-3">★★★★★</div>
+                            <p class="text-gray-700 text-xs leading-relaxed font-medium italic pr-2">
+                                «Для семьи с тремя детьми тариф "Всё включено" — спасение. Объяснения подстраиваются под возраст: младший понимает математику за 5 класс, старшая — обществознание. Вместо 3 репетиторов платим 1 490 ₽ и экономим 12 400 ₽ каждый месяц.»
+                            </p>
                         </div>
-                    </div>
+                        <div class="mt-6 pr-16 pt-4 border-t border-gray-100">
+                            <h5 class="text-xs font-bold text-[#121316]">Ирина В. (Мама троих детей)</h5>
+                            <span class="text-[10px] font-bold text-gray-400">Тариф «Всё включено»</span>
+                            <span class="review-badge">−12 400 ₽/мес</span>
+                        </div>
+                        <img src="assets/avatars/irina.svg" alt="Ирина В." class="review-avatar" loading="lazy">
+                    </article>
+
+                    <article class="review-card p-6 rounded-2xl flex flex-col justify-between">
+                        <div>
+                            <div class="review-stars mb-3">★★★★★</div>
+                            <p class="text-gray-700 text-xs leading-relaxed font-medium italic pr-2">
+                                «Раньше возили сына к репетитору по математике 2 раза в неделю: 8 000 ₽ + дорога и ожидание. Теперь всё в телефоне — сфотографировали задачу, получили понятный разбор по шагам. Сын закрыл тему за вечер, а мы сэкономили 7 410 ₽ уже в первый месяц.»
+                            </p>
+                        </div>
+                        <div class="mt-6 pr-16 pt-4 border-t border-gray-100">
+                            <h5 class="text-xs font-bold text-[#121316]">Марина К. (Мама школьника)</h5>
+                            <span class="text-[10px] font-bold text-gray-400">Пакет «Точечный удар»</span>
+                            <span class="review-badge">−7 410 ₽/мес</span>
+                        </div>
+                        <img src="assets/avatars/marina.svg" alt="Марина К." class="review-avatar" loading="lazy">
+                    </article>
+
+                    <article class="review-card p-6 rounded-2xl flex flex-col justify-between">
+                        <div>
+                            <div class="review-stars mb-3">★★★★★</div>
+                            <p class="text-gray-700 text-xs leading-relaxed font-medium italic pr-2">
+                                «Искали способ помочь дочери с физикой без скандалов. ИИ объясняет настолько просто, что даже я, гуманитарий, понимаю ход решения. Репетитор брал 2 500 ₽ за урок — за эти деньги здесь целый месяц помощи по 3 предметам. Удобно и выгодно.»
+                            </p>
+                        </div>
+                        <div class="mt-6 pr-16 pt-4 border-t border-gray-100">
+                            <h5 class="text-xs font-bold text-[#121316]">Сергей П. (Папа, 7 класс)</h5>
+                            <span class="text-[10px] font-bold text-gray-400">Пакет «Предметный Буст»</span>
+                            <span class="review-badge">−9 450 ₽/мес vs репетитор</span>
+                        </div>
+                        <img src="assets/avatars/sergey.svg" alt="Сергей П." class="review-avatar" loading="lazy">
+                    </article>
+
+                    <article class="review-card p-6 rounded-2xl flex flex-col justify-between">
+                        <div>
+                            <div class="review-stars mb-3">★★★★★</div>
+                            <p class="text-gray-700 text-xs leading-relaxed font-medium italic pr-2">
+                                «Не нужно ехать и подстраиваться под чужой график: вечером открыли приложение — ИИ разобрал контрольную по химии простым языком. Посчитали бюджет: вместо трёх репетиторов (21 500 ₽) платим 1 490 ₽ и экономим 20 010 ₽ каждый месяц.»
+                            </p>
+                        </div>
+                        <div class="mt-6 pr-16 pt-4 border-t border-gray-100">
+                            <h5 class="text-xs font-bold text-[#121316]">Ольга М. (Мама двоих детей)</h5>
+                            <span class="text-[10px] font-bold text-gray-400">Тариф «Всё включено»</span>
+                            <span class="review-badge">−20 010 ₽/мес</span>
+                        </div>
+                        <img src="assets/avatars/olga.svg" alt="Ольга М." class="review-avatar" loading="lazy">
+                    </article>
                 </div>
+                <p class="reviews-hint">Листайте отзывы горизонтально →</p>
             </div>
         </section>
 
@@ -668,6 +919,7 @@
     <script>
         lucide.createIcons();
         initTheme();
+        initPageMotion();
 
         function initTheme() {
             const savedTheme = localStorage.getItem('theme');
@@ -846,7 +1098,31 @@
             closeModal('auth-modal');
             openModal('lk-modal');
         }
+
+        function initPageMotion() {
+            const targets = document.querySelectorAll('section, .bg-white.border-2.rounded-3xl, .rounded-3xl.bg-white, .rounded-2xl.bg-white');
+            targets.forEach((el) => el.classList.add('section-reveal'));
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.16, rootMargin: '0px 0px -8% 0px' });
+
+            targets.forEach((el) => observer.observe(el));
+        }
+
+        function scrollReviews(direction) {
+            const track = document.getElementById('reviews-track');
+            if (!track) return;
+            const card = track.querySelector('.review-card');
+            const gap = 20;
+            const step = card ? card.getBoundingClientRect().width + gap : 360;
+            track.scrollBy({ left: direction * step, behavior: 'smooth' });
+        }
     </script>
 </body>
-</html>
 </html>
