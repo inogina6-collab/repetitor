@@ -10,40 +10,131 @@
     <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&family=Unbounded:wght@500;700;800;900&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
+        :root {
+            --font-display: 'Unbounded', sans-serif;
+            --font-body: 'Onest', sans-serif;
+            --color-ink: #2D1F24;
+            --color-ink-muted: #5C4A52;
+            --color-brand: #832A49;
+            --color-surface: #C5B7B7;
+            --text-hero: clamp(1.875rem, 3.8vw + 0.5rem, 3.75rem);
+            --text-section: clamp(1.625rem, 2.2vw + 0.75rem, 2.5rem);
+            --text-card: clamp(0.8125rem, 0.4vw + 0.7rem, 0.9375rem);
+            --text-modal: clamp(0.9375rem, 0.6vw + 0.65rem, 1.125rem);
+            --text-price: clamp(1.75rem, 1.4vw + 1rem, 2.5rem);
+            --text-tagline: clamp(1rem, 0.8vw + 0.55rem, 1.25rem);
+            --text-eyebrow: 0.625rem;
+        }
+
         body {
-            font-family: 'Onest', sans-serif;
+            font-family: var(--font-body);
             background: linear-gradient(135deg, #C5B7B7 0%, #DDD4D4 42%, #F0EBEB 78%, #FAF7F7 100%);
             background-attachment: fixed;
             min-height: 100vh;
-            color: #121316;
+            color: var(--color-ink);
             overflow-x: hidden;
             line-height: 1.65;
             -webkit-font-smoothing: antialiased;
             transition: background 0.25s ease, color 0.25s ease;
         }
-        .font-title {
-            font-family: 'Unbounded', sans-serif;
-            letter-spacing: -0.02em;
-        }
-        .hero-title {
-            font-family: 'Unbounded', sans-serif;
+
+        /* Единая система заголовков */
+        .heading-display {
+            font-family: var(--font-display);
             font-weight: 800;
-            line-height: 1.35;
-            letter-spacing: -0.03em;
+            color: var(--color-ink);
+            text-wrap: balance;
         }
-        .hero-title .line {
+        .heading-display--logo {
+            font-size: 1.25rem;
+            font-weight: 900;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+        .heading-display--hero {
+            font-size: var(--text-hero);
+            letter-spacing: -0.035em;
+            line-height: 1.28;
+        }
+        .heading-display--hero .line {
             display: block;
         }
-        .hero-title .line + .line {
+        .heading-display--hero .line + .line {
             margin-top: 0.35em;
         }
-        .hero-title .nowrap {
+        .heading-display--hero .nowrap {
             white-space: nowrap;
         }
-        .section-title {
-            line-height: 1.4;
-            letter-spacing: -0.02em;
+        .heading-display--section {
+            font-size: var(--text-section);
+            letter-spacing: -0.025em;
+            line-height: 1.3;
         }
+        .heading-display--card {
+            font-size: var(--text-card);
+            font-weight: 700;
+            letter-spacing: -0.015em;
+            line-height: 1.35;
+        }
+        .heading-display--modal {
+            font-size: var(--text-modal);
+            letter-spacing: 0.06em;
+            line-height: 1.3;
+            text-transform: uppercase;
+        }
+        .heading-display--micro {
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            line-height: 1.35;
+        }
+        .heading-eyebrow {
+            font-family: var(--font-display);
+            font-size: var(--text-eyebrow);
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            border-width: 2px;
+            border-style: solid;
+        }
+        .heading-eyebrow--rose {
+            color: #9F1239;
+            background: #FFE4E6;
+            border-color: #FECDD3;
+        }
+        .heading-eyebrow--blue {
+            color: #1D4ED8;
+            background: #DBEAFE;
+            border-color: #BFDBFE;
+        }
+        .heading-eyebrow--emerald {
+            color: #065F46;
+            background: #D1FAE5;
+            border-color: #A7F3D0;
+        }
+        .heading-price {
+            font-family: var(--font-display);
+            font-size: var(--text-price);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            color: var(--color-ink);
+        }
+        .heading-tagline {
+            font-family: var(--font-display);
+            font-size: var(--text-tagline);
+            font-weight: 700;
+            letter-spacing: -0.015em;
+            line-height: 1.45;
+            color: var(--color-ink-muted);
+        }
+        .heading-accent-brand { color: var(--color-brand); }
+        .heading-accent-blue { color: #0052FF; }
+        .heading-accent-rose { color: #BE123C; }
+
         .prose-spacing {
             line-height: 1.8;
         }
@@ -292,6 +383,13 @@
         body.dark-theme .bg-gray-100 {
             background-color: #1d2330 !important;
         }
+        body.dark-theme .heading-display,
+        body.dark-theme .heading-price {
+            color: #F5E8EC;
+        }
+        body.dark-theme .heading-tagline {
+            color: #D1C4C8;
+        }
         body.dark-theme .text-\[\#121316\],
         body.dark-theme .text-gray-800,
         body.dark-theme .text-gray-700,
@@ -341,7 +439,7 @@
             box-shadow: 0 16px 40px rgba(131, 42, 73, 0.12);
         }
         .cta-panel h2 {
-            color: #2D1F24;
+            color: var(--color-ink);
         }
         .cta-typewriter {
             min-height: 5.5rem;
@@ -358,10 +456,10 @@
             .cta-typewriter { font-size: 1.55rem; }
         }
         .cta-24-highlight {
-            font-family: 'Unbounded', sans-serif;
+            font-family: var(--font-display);
             font-size: 1.55em;
             font-weight: 800;
-            color: #832A49;
+            color: var(--color-brand);
             letter-spacing: -0.02em;
         }
         .typewriter-cursor {
@@ -413,9 +511,24 @@
         body.dark-theme .cta-24-highlight {
             color: #F0A8BC;
         }
+        body.dark-theme .heading-eyebrow--rose {
+            color: #FDA4AF;
+            background: rgba(159, 18, 57, 0.25);
+            border-color: rgba(254, 205, 211, 0.3);
+        }
+        body.dark-theme .heading-eyebrow--blue {
+            color: #93C5FD;
+            background: rgba(29, 78, 216, 0.2);
+            border-color: rgba(191, 219, 254, 0.25);
+        }
+        body.dark-theme .heading-eyebrow--emerald {
+            color: #6EE7B7;
+            background: rgba(6, 95, 70, 0.25);
+            border-color: rgba(167, 243, 208, 0.25);
+        }
     </style>
 </head>
-<body class="text-[#121316] min-h-screen antialiased selection:bg-[#0052FF] selection:text-white">
+<body class="min-h-screen antialiased selection:bg-[#832A49] selection:text-white">
 
     <header class="border-b border-[#B8A8A8]/50 backdrop-blur-md sticky top-0 z-50 bg-[#C5B7B7]/85 shadow-xs">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
@@ -423,7 +536,7 @@
                 <div class="bg-[#0052FF] p-2 rounded-xl text-white shadow-md shadow-blue-500/30 transition hover:scale-105">
                     <i data-lucide="brain-circuit" class="w-5 h-5"></i>
                 </div>
-                <span class="font-title text-xl font-black tracking-tight text-[#121316]">Домашка.<span class="text-[#0052FF]">AI</span></span>
+                <span class="heading-display heading-display--logo tracking-tight">Домашка.<span class="heading-accent-blue">AI</span></span>
             </div>
             <nav class="hidden md:flex space-x-8 text-sm font-bold text-gray-600">
                 <a href="#features" class="hover:text-[#0052FF] transition-colors">Родителям</a>
@@ -452,9 +565,9 @@
                 <span>Мгновенное Vision API распознавание формул и текстов</span>
             </div>
             
-            <h1 class="animate-fade-up delay-1 hero-title text-3xl sm:text-5xl lg:text-[3.25rem] xl:text-6xl text-[#121316] max-w-5xl mx-auto">
-                <span class="line">Твой личный <span class="nowrap text-[#0052FF] underline decoration-[#BE123C] decoration-4 underline-offset-[6px]">ИИ-репетитор</span></span>
-                <span class="line">на экране <span class="text-[#BE123C]">смартфона</span></span>
+            <h1 class="animate-fade-up delay-1 heading-display heading-display--hero max-w-5xl mx-auto">
+                <span class="line">Твой личный <span class="nowrap heading-accent-blue underline decoration-[#BE123C] decoration-4 underline-offset-[6px]">ИИ-репетитор</span></span>
+                <span class="line">на экране <span class="heading-accent-rose">смартфона</span></span>
             </h1>
             
             <p class="animate-fade-up delay-2 hero-subtitle mt-10 text-lg sm:text-xl lg:text-2xl text-gray-700 max-w-3xl mx-auto font-medium">
@@ -544,7 +657,7 @@
                 </div>
             </div>
 
-            <p class="mt-16 font-title text-lg sm:text-xl font-bold text-gray-700 max-w-4xl mx-auto">
+            <p class="mt-16 heading-tagline max-w-4xl mx-auto text-center">
                 Поддержка в сфере образования на основе искусственного интеллекта по запросу.
             </p>
         </section>
@@ -552,11 +665,11 @@
         <section id="features" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t-2 border-gray-200">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
                 <div class="lg:col-span-7 space-y-5">
-                    <div class="text-[10px] font-black tracking-wider text-rose-800 uppercase bg-rose-100 border-2 border-rose-200 px-3 py-1 rounded-full inline-block">
+                    <div class="heading-eyebrow heading-eyebrow--rose">
                         Родительский контроль и спокойствие
                     </div>
-                    <h2 class="font-title section-title text-2xl sm:text-3xl lg:text-4xl font-black text-[#121316]">
-                        Превратите домашние задания в <span class="text-[#0052FF]">дружеские рукопожатия</span>.
+                    <h2 class="heading-display heading-display--section">
+                        Превратите домашние задания в <span class="heading-accent-blue">дружеские рукопожатия</span>.
                     </h2>
                     <p class="text-gray-600 prose-spacing text-base font-medium">
                         Введите вопрос из домашнего задания и получите мгновенную помощь. Как и хороший репетитор, <span class="text-[#BE123C] font-bold">Khanmigo</span> мягко направляет ребенка, чтобы тот сам находил ответы.
@@ -568,7 +681,7 @@
                     </div>
                 </div>
                 <div class="lg:col-span-5 bg-gradient-to-br from-white to-gray-50 border-2 border-gray-300 rounded-3xl p-6 shadow-sm">
-                    <h4 class="text-xs font-bold text-gray-800 mb-4 flex items-center space-x-2">
+                    <h4 class="heading-display heading-display--card mb-4 flex items-center space-x-2 text-[var(--color-ink-muted)]">
                         <i data-lucide="help-circle" class="w-4 h-4 text-[#BE123C]"></i>
                         <span>Точечное устранение болей родителей 40+</span>
                     </h4>
@@ -599,11 +712,11 @@
                     </div>
                 </div>
                 <div class="lg:col-span-7 space-y-5">
-                    <div class="text-[10px] font-black tracking-wider text-[#0052FF] uppercase bg-blue-100 border-2 border-blue-200 px-3 py-1 rounded-full inline-block">
+                    <div class="heading-eyebrow heading-eyebrow--blue">
                         Развитие силы интеллекта
                     </div>
-                    <h2 class="font-title section-title text-2xl sm:text-3xl lg:text-4xl font-black text-[#121316]">
-                        Развивайте силу своего <span class="text-[#BE123C]">мозга</span>.
+                    <h2 class="heading-display heading-display--section">
+                        Развивайте силу своего <span class="heading-accent-rose">мозга</span>.
                     </h2>
                     <p class="text-gray-600 prose-spacing text-base font-medium">
                         Платформа <span class="text-[#0052FF] font-bold">побуждает вас мыслить критически</span> и успешно решать комплексные задачи, фундаментально не предоставляя готовых прямых ответов для банального списывания. Изучайте новые дисциплины в любое удобное время, будь то сложная алгебра, подготовка к ОГЭ/ЕГЭ, формулы по химии, обществознание или написание эссе.
@@ -619,7 +732,7 @@
 
         <section id="reviews" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t-2 border-gray-200">
             <div class="text-center max-w-3xl mx-auto mb-10">
-                <h2 class="font-title section-title text-xl sm:text-3xl font-black text-[#121316]">Ученики и родители оценили Домашка.AI</h2>
+                <h2 class="heading-display heading-display--section">Ученики и родители оценили Домашка.AI</h2>
                 <p class="text-sm font-bold text-gray-500 mt-2">Понятные объяснения за минуты, без поездок к репетитору — семьи экономят от 7 000 до 20 000 ₽ в месяц</p>
             </div>
 
@@ -640,7 +753,7 @@
                             </p>
                         </div>
                         <div class="mt-6 pr-16 pt-4 border-t border-gray-100">
-                            <h5 class="text-xs font-bold text-[#121316]">Анна Н. (Мама школьника)</h5>
+                            <h5 class="heading-display heading-display--micro">Анна Н. (Мама школьника)</h5>
                             <span class="text-[10px] font-bold text-gray-400">Пакет «Точечный удар»</span>
                             <span class="review-badge">−15 410 ₽/мес vs репетитор</span>
                         </div>
@@ -655,7 +768,7 @@
                             </p>
                         </div>
                         <div class="mt-6 pr-16 pt-4 border-t border-gray-100">
-                            <h5 class="text-xs font-bold text-[#121316]">Кирилл Л. (11 класс)</h5>
+                            <h5 class="heading-display heading-display--micro">Кирилл Л. (11 класс)</h5>
                             <span class="text-[10px] font-bold text-gray-400">Готовится к профильным экзаменам</span>
                             <span class="review-badge">−16 000 ₽/мес vs 2 репетитора</span>
                         </div>
@@ -670,7 +783,7 @@
                             </p>
                         </div>
                         <div class="mt-6 pr-16 pt-4 border-t border-gray-100">
-                            <h5 class="text-xs font-bold text-[#121316]">Ирина В. (Мама троих детей)</h5>
+                            <h5 class="heading-display heading-display--micro">Ирина В. (Мама троих детей)</h5>
                             <span class="text-[10px] font-bold text-gray-400">Тариф «Всё включено»</span>
                             <span class="review-badge">−12 400 ₽/мес</span>
                         </div>
@@ -685,7 +798,7 @@
                             </p>
                         </div>
                         <div class="mt-6 pr-16 pt-4 border-t border-gray-100">
-                            <h5 class="text-xs font-bold text-[#121316]">Марина К. (Мама школьника)</h5>
+                            <h5 class="heading-display heading-display--micro">Марина К. (Мама школьника)</h5>
                             <span class="text-[10px] font-bold text-gray-400">Пакет «Точечный удар»</span>
                             <span class="review-badge">−7 410 ₽/мес</span>
                         </div>
@@ -700,7 +813,7 @@
                             </p>
                         </div>
                         <div class="mt-6 pr-16 pt-4 border-t border-gray-100">
-                            <h5 class="text-xs font-bold text-[#121316]">Сергей П. (Папа, 7 класс)</h5>
+                            <h5 class="heading-display heading-display--micro">Сергей П. (Папа, 7 класс)</h5>
                             <span class="text-[10px] font-bold text-gray-400">Пакет «Предметный Буст»</span>
                             <span class="review-badge">−9 450 ₽/мес vs репетитор</span>
                         </div>
@@ -715,7 +828,7 @@
                             </p>
                         </div>
                         <div class="mt-6 pr-16 pt-4 border-t border-gray-100">
-                            <h5 class="text-xs font-bold text-[#121316]">Ольга М. (Мама двоих детей)</h5>
+                            <h5 class="heading-display heading-display--micro">Ольга М. (Мама двоих детей)</h5>
                             <span class="text-[10px] font-bold text-gray-400">Тариф «Всё включено»</span>
                             <span class="review-badge">−20 010 ₽/мес</span>
                         </div>
@@ -728,8 +841,8 @@
 
         <section id="pricing" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t-2 border-gray-200 relative">
             <div class="text-center max-w-3xl mx-auto mb-12">
-                <div class="text-[10px] font-black tracking-wider text-emerald-800 uppercase bg-emerald-100 border-2 border-emerald-200 px-3 py-1 rounded-full inline-block mb-3">Гибкое управление подпиской</div>
-                <h2 class="font-title section-title text-2xl sm:text-3xl font-black text-[#121316]">Умные тарифы для любых задач</h2>
+                <div class="heading-eyebrow heading-eyebrow--emerald mb-3">Гибкое управление подпиской</div>
+                <h2 class="heading-display heading-display--section">Умные тарифы для любых задач</h2>
                 <p class="text-sm font-bold text-gray-500 mt-2">Каждый тариф включает 1 день бесплатного тест-драйва. Без скрытых платежей.</p>
             </div>
 
@@ -738,12 +851,12 @@
                 <div class="bg-white border-2 border-gray-300 rounded-3xl p-6 flex flex-col justify-between hover:border-gray-400 transition-all duration-300 relative shadow-xs hover:shadow-md">
                     <div>
                         <div class="flex justify-between items-start">
-                            <h4 class="text-sm font-black text-[#121316]">Точечный удар</h4>
+                            <h4 class="heading-display heading-display--card">Точечный удар</h4>
                             <span class="bg-gray-100 text-gray-500 text-[9px] uppercase font-bold px-2 py-0.5 rounded border border-gray-200">1 предмет</span>
                         </div>
                         <p class="text-xs text-gray-500 mt-2 font-medium italic">Для кого: Мама поняла, что у ребенка западают только уравнения по химии.</p>
                         <div class="mt-4 flex items-baseline">
-                            <span class="text-3xl font-black text-[#121316] font-title">590 ₽</span>
+                            <span class="heading-price">590 ₽</span>
                             <span class="text-xs font-bold text-gray-400 ml-1">/ мес.</span>
                         </div>
                         
@@ -791,12 +904,12 @@
                     <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#0052FF] text-white text-[9px] font-black px-3 py-1 rounded-full tracking-wider animate-pulse">ВЫБОР ПРОФИЛЯ</div>
                     <div>
                         <div class="flex justify-between items-start">
-                            <h4 class="text-sm font-black text-[#121316]">Предметный Буст</h4>
+                            <h4 class="heading-display heading-display--card">Предметный Буст</h4>
                             <span class="text-[#0052FF] text-xs font-black">3 предмета</span>
                         </div>
                         <p class="text-xs text-gray-500 mt-2 font-medium italic">Для кого: Школьник сдает ОГЭ/ЕГЭ по выбранному профилю. Пользователь сам выбирает 3 галочки из списка.</p>
                         <div class="mt-4 flex items-baseline">
-                            <span class="text-4xl font-black text-[#121316] font-title">1 050 ₽</span>
+                            <span class="heading-price">1 050 ₽</span>
                             <span class="text-xs font-bold text-gray-400 ml-1">/ мес.</span>
                         </div>
                         
@@ -843,12 +956,12 @@
                 <div class="bg-white border-2 border-gray-300 rounded-3xl p-6 flex flex-col justify-between hover:border-gray-400 transition-all duration-300 shadow-xs hover:shadow-md">
                     <div>
                         <div class="flex justify-between items-start">
-                            <h4 class="text-sm font-black text-[#121316]">Всё включено</h4>
+                            <h4 class="heading-display heading-display--card">Всё включено</h4>
                             <span class="bg-emerald-50 text-emerald-700 text-[9px] uppercase font-bold px-2 py-0.5 rounded border border-emerald-200">Максимум</span>
                         </div>
                         <p class="text-xs text-gray-500 mt-2 font-medium italic">Для кого: Для ленивых или многодетных родителей. Снимает любые ограничения. Самый маржинальный тариф.</p>
                         <div class="mt-4 flex items-baseline">
-                            <span class="text-3xl font-black text-[#121316] font-title">1 490 ₽</span>
+                            <span class="heading-price">1 490 ₽</span>
                             <span class="text-xs font-bold text-gray-400 ml-1">/ мес.</span>
                         </div>
                         
@@ -873,7 +986,7 @@
         <section class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
             <div class="cta-panel rounded-3xl p-10 sm:p-14 relative overflow-hidden">
                 <div class="relative z-10 max-w-3xl mx-auto space-y-6">
-                    <h2 class="font-title section-title text-xl sm:text-3xl font-black">
+                    <h2 class="heading-display heading-display--section">
                         Попробуйте лучший образовательный инструмент на базе нейросетей
                     </h2>
                     <p id="cta-typewriter" class="cta-typewriter mx-auto max-w-2xl text-left sm:text-center"></p>
@@ -900,7 +1013,7 @@
     <div id="auth-modal" class="fixed inset-0 z-50 overflow-y-auto hidden bg-black/40 backdrop-blur-xs flex items-center justify-center p-4">
         <div class="bg-white border-2 border-gray-200 w-full max-w-md rounded-2xl p-6 relative shadow-2xl transition-all">
             <button onclick="closeModal('auth-modal')" class="absolute top-4 right-4 text-gray-400 hover:text-gray-700 cursor-pointer"><i data-lucide="x" class="w-4 h-4"></i></button>
-            <h3 class="font-title text-base font-black text-[#121316] mb-1">СОЗДАТЬ ПРОФИЛЬ</h3>
+            <h3 class="heading-display heading-display--modal mb-1">СОЗДАТЬ ПРОФИЛЬ</h3>
             <p class="text-xs font-bold text-gray-400 mb-5">Запустите бесплатные сутки тест-драйва выбранного тарифа.</p>
             <form onsubmit="handleAuth(event)" class="space-y-4">
                 <div>
@@ -926,7 +1039,7 @@
             <div class="flex items-center space-x-3 border-b-2 border-gray-100 pb-4 mb-6">
                 <div class="bg-blue-50 border border-blue-200 p-2 rounded-xl text-[#0052FF]"><i data-lucide="shield-check" class="w-5 h-5"></i></div>
                 <div>
-                    <h3 class="font-title text-sm font-black text-[#121316]">КАБИНЕТ РОДИТЕЛЬСКОГО КОНТРОЛЯ</h3>
+                    <h3 class="heading-display heading-display--modal">КАБИНЕТ РОДИТЕЛЬСКОГО КОНТРОЛЯ</h3>
                     <p class="text-[10px] font-bold text-gray-400">Мониторинг прогресса обучения, предметов и активности ребенка</p>
                 </div>
             </div>
@@ -1113,7 +1226,7 @@
                     block.className = "bg-white border-2 border-gray-200 p-4 rounded-xl space-y-1.5 transition-all duration-300 hover:border-[#0052FF]/40 shadow-xs animate-fade-up";
                     block.style.animationDelay = `${i * 0.12}s`;
                     block.innerHTML = `
-                        <h5 class="text-xs font-bold text-[#121316] flex items-center space-x-2">
+                        <h5 class="heading-display heading-display--micro flex items-center space-x-2">
                             <span class="w-5 h-5 rounded-md bg-[#0052FF]/10 text-[#0052FF] text-[10px] flex items-center justify-center font-black border border-[#0052FF]/20">${i+1}</span>
                             <span>${step.t}</span>
                         </h5>
